@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -100,18 +101,29 @@ public class signup extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<AuthResult> u_task) {
                                                 if(u_task.isSuccessful()){
-                                                    db.collection("users").document(member_id).delete();
+                                                    FirebaseUser currentUser = u_task.getResult().getUser();
 
-                                                    String uid = u_task.getResult().getUser().getUid();
-                                                    Map<String, Object> user = new HashMap<>();
-                                                    user.put("member_id", member_id);
-                                                    user.put("user_id", uid);
-                                                    user.put("registered", FieldValue.serverTimestamp());
+                                                    currentUser.updateProfile(
+                                                            new UserProfileChangeRequest.Builder()
+                                                                .setDisplayName(binding.txtFullname.getText().toString())
+                                                                .build()
+                                                    ).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> up_task) {
+                                                            db.collection("users").document(member_id).delete();
 
-                                                    db.collection("users").document(uid).set(user);
+                                                            String uid = currentUser.getUid();
+                                                            Map<String, Object> user = new HashMap<>();
+                                                            user.put("member_id", member_id);
+                                                            user.put("user_id", uid);
+                                                            user.put("registered", FieldValue.serverTimestamp());
 
-                                                    startActivity(new Intent(getApplicationContext(), home.class));
-                                                    finish();
+                                                            db.collection("users").document(uid).set(user);
+
+                                                            startActivity(new Intent(getApplicationContext(), home.class));
+                                                            finish();
+                                                        }
+                                                    });
                                                 }else{
                                                     Toast.makeText(getApplicationContext(),
                                                             u_task.getException().getMessage(),
