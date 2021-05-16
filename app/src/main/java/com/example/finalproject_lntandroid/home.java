@@ -2,17 +2,20 @@ package com.example.finalproject_lntandroid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.finalproject_lntandroid.databinding.ActivityHomeBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -40,6 +43,42 @@ public class home extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+
+        binding.navBottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fT = fragmentManager.beginTransaction();
+
+                switch(item.getItemId()){
+                    case R.id.page_1:
+                        fT.replace(R.id.fgView, CounterFragment.class, null)
+                            .setReorderingAllowed(true)
+                            .addToBackStack("counter") // name can be null
+                            .commit();
+                        break;
+                    case R.id.page_2:
+                        fT.replace(R.id.fgView, AreaFragment.class, null)
+                                .setReorderingAllowed(true)
+                                .addToBackStack("area") // name can be null
+                                .commit();
+                        break;
+                    case R.id.page_3:
+                        fT.replace(R.id.fgView, VolumeFragment.class, null)
+                                .setReorderingAllowed(true)
+                                .addToBackStack("volume") // name can be null
+                                .commit();
+                        break;
+                    case R.id.page_4:
+                        fT.replace(R.id.fgView, LicenseFragment.class, null)
+                                .setReorderingAllowed(true)
+                                .addToBackStack("license") // name can be null
+                                .commit();
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     @Override

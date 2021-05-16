@@ -59,4 +59,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, signup.class));
     }
 
+    public void show_license(View view){
+        startActivity(new Intent(this, LicenseActivity.class));
+    }
+
 }

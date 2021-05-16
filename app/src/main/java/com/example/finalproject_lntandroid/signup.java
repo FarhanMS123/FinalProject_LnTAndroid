@@ -147,4 +147,8 @@ public class signup extends AppCompatActivity {
     public void back(View view){
         finish();
     }
+
+    public void show_license(View view){
+        startActivity(new Intent(this, LicenseActivity.class));
+    }
 }

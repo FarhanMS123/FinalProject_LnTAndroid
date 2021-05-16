@@ -84,6 +84,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="28dp"
                 android:clickable="true"
+                android:onClick="show_license"
                 android:text="License"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
