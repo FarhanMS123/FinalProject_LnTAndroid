@@ -27,13 +27,15 @@ import java.util.Map;
 
 public class home extends AppCompatActivity {
 
-    private ActivityHomeBinding binding;
+    public ActivityHomeBinding binding;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
     private FirebaseUser currentUser;
     private DocumentReference docUser;
     private Map<String, Object> user;
+
+    public boolean ignoreSetNavBottom = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,11 @@ public class home extends AppCompatActivity {
         binding.navBottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(ignoreSetNavBottom){
+                    ignoreSetNavBottom = false;
+                    return true;
+                }
+
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fT = fragmentManager.beginTransaction();
 
@@ -76,6 +83,9 @@ public class home extends AppCompatActivity {
                                 .commit();
                         break;
                 }
+
+//                Toast.makeText(getApplicationContext(), "1238: " + binding.fgView., Toast.LENGTH_SHORT).show();
+
                 return true;
             }
         });
