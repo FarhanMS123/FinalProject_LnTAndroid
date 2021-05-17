@@ -22,12 +22,10 @@ page.
 
 ![menthol](app/src/main/res/drawable/menthol.png)
 
-[Icons](https://www.flaticon.com/free-icon/menthol_1553039) made by [Good Ware](https://www.flaticon.com/authors/good-ware)
-
 [Icons](https://www.flaticon.com/free-icon/menthol_1553039) made by [Good Ware](https://www.flaticon.com/authors/good-ware) from [FlatIcon](https://www.flaticon.com/)
 
 This app is using free license from FlatIcon and follow the ToS and EULA.
 
 Android Libraries, JetPack, and Firebase are part of Google. All license follow Google ToS.
 
-Please contact me [by email](mailto:animationfar@gmail.com?subject=MidTest Project Report) if you would like to discuss or I do something wrong with the license.
+Please contact me [by email](mailto:animationfar@gmail.com?subject=FinalTest%20Project%20dddReport) if you would like to discuss or I do something wrong with the license.
