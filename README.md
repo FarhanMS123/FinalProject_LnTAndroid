@@ -4,6 +4,8 @@ A part of LnT Final Project.
 ## Firestore Model
 ![model](docs/model.gif)
 
+This shows when user registered and when user delete his account.
+
 ## License
 HTML Version could be found [here](app/src/main/assets/license.html)
 
