@@ -1,5 +1,6 @@
 package com.example.finalproject_lntandroid;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -23,12 +24,17 @@ public class LicenseFragment extends Fragment {
         binding = FragmentLicenseBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
+        binding.wvLicense.loadUrl("file:///android_asset/license.html");
+        binding.wvLicense.setBackgroundColor(Color.TRANSPARENT);
+
         return view;
     }
 
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
+
+        if(getActivity().getClass().getName() != home.class.getName()) return;
 
         home parActivity = (home) getActivity();
         BottomNavigationView navBottom = parActivity.findViewById(R.id.navBottom);
